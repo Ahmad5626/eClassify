@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import Header from "@/components/Header"
-import FooterBold from "@/components/Footer"
+import Footer from "@/components/Footer"
 
 export default function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState("")
@@ -303,7 +303,7 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-    <FooterBold/>
+    <Footer/>
     </>
   )
 }

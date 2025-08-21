@@ -190,7 +190,7 @@ export default function ContactPage() {
             <CardContent>
               <div className="bg-muted rounded-lg h-96 flex items-center justify-center">
                 <div className="text-center w-full">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448193.950603092!2d76.76356906374639!3d28.64428745347556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1755716570423!5m2!1sen!2sin"  height="300"   loading="lazy" referrerpolicy="no-referrer-when-downgrade" className="w-full"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448193.950603092!2d76.76356906374639!3d28.64428745347556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1755716570423!5m2!1sen!2sin"  height="300"   loading="lazy" className="w-full"></iframe>
                   {/* <MapPin className="h-12 w-12 text-primary mx-auto mb-4" /> */}
                   {/* <p className="text-muted-foreground">Interactive map would be integrated here</p>
                   <p className="text-sm text-muted-foreground mt-2">Showing our New York and San Francisco locations</p> */}

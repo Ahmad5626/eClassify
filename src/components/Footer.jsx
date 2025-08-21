@@ -19,7 +19,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
-export default function FooterBold() {
+export default function Footer() {
   const [email, setEmail] = useState("")
   const [hoveredSocial, setHoveredSocial] = useState(null)
 
@@ -200,12 +200,12 @@ export default function FooterBold() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 px-2 text-sm md: text-md md:px-4 md:py-3 bg-input border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="flex-1 px-2 text-[10px] md: text-md md:px-4 md:py-3 bg-input border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   required
                 />
                 <button
                   type="submit"
-                  className="px-2 text-sm md:text-md md:px-4 py-2 md:py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 font-semibold"
+                  className="px-2 text-[10px] md:text-md md:px-4 py-2 md:py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 font-semibold"
                 >
                 
                   <Send className="w-4 h-4" />

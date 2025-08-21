@@ -6,7 +6,7 @@ export default function AdminSidebar({ activeTab, setActiveTab, sidebarOpen, set
     { id: "dashboard", name: "Dashboard", icon: Home },
     { id: "ads", name: "Ads", icon: BookOpen },
     { id: "users", name: "Users", icon: Users },
-    { id: "categories", name: "Categories", icon: Award },
+    { id: "Packages", name: "Packages", icon: Award },
     { id: "analytics", name: "Analytics", icon: BarChart3 },
     { id: "reports", name: "Reports", icon: Calendar },
     { id: "settings", name: "Settings", icon: Settings },
@@ -19,17 +19,15 @@ export default function AdminSidebar({ activeTab, setActiveTab, sidebarOpen, set
       } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
     >
       <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
-            </svg>
-          </div>
-          <div className="text-xl font-bold">
-            <span className="text-blue-600">OLX</span>
-            <span className="text-orange-500">Admin</span>
-          </div>
-        </div>
+        <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">eC</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">eClassify</h1>
+                <p className="text-xs text-gray-500 -mt-1">Buy & Sell Anything</p>
+              </div>
+            </div>
         <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-1 rounded-md hover:bg-gray-100">
           <X className="w-5 h-5" />
         </button>

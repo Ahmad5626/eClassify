@@ -59,14 +59,13 @@ export default function Footer() {
 ]
 
   return (
-    <footer className="relative overflow-hidden">
+    <footer className="relative overflow-hidden bg-[#f7f8fd]">
       {/* Background with overlapping gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent opacity-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 via-transparent to-primary/20"></div>
+      
 
       {/* Decorative shapes */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-3xl -translate-x-32 -translate-y-32"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-accent/30 to-primary/30 rounded-full blur-3xl translate-x-48 translate-y-48"></div>
+      {/* <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-3xl -translate-x-32 -translate-y-32"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-accent/30 to-primary/30 rounded-full blur-3xl translate-x-48 translate-y-48"></div> */}
 
       <div className="relative max-w-7xl mx-auto px-4 py-16">
         {/* Main Footer Content */}

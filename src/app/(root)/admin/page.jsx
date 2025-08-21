@@ -11,22 +11,7 @@ export default function AdminPanel() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("dashboard")
 
-  const QuickActions = () => (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <button className="flex items-center space-x-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
-          <span className="font-medium text-blue-600">Approve Pending Ads</span>
-        </button>
-        <button className="flex items-center space-x-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors">
-          <span className="font-medium text-green-600">Export User Data</span>
-        </button>
-        <button className="flex items-center space-x-3 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
-          <span className="font-medium text-purple-600">Generate Reports</span>
-        </button>
-      </div>
-    </div>
-  )
+  
 
   const renderContent = () => {
     switch (activeTab) {
@@ -34,18 +19,18 @@ export default function AdminPanel() {
         return (
           <div className="space-y-6">
             <DashboardStats />
-            <QuickActions />
+         
           </div>
         )
       case "ads":
         return <AdsManagement />
       case "users":
         return <UsersManagement />
-      case "categories":
+      case "Packages":
         return (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Categories Management</h3>
-            <p className="text-gray-600">Manage ad categories, subcategories, and category settings.</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Packages Management</h3>
+            <p className="text-gray-600">Manage ad Packages, sub Packages, and category settings.</p>
           </div>
         )
       case "analytics":
@@ -73,7 +58,7 @@ export default function AdminPanel() {
         return (
           <div className="space-y-6">
             <DashboardStats />
-            <QuickActions />
+            
           </div>
         )
     }

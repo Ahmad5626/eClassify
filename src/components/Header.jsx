@@ -1,23 +1,37 @@
 "use client"
 
 import { useState } from "react"
-import { Search, MapPin, Menu, X, ChevronDown, Globe, Plus, PlusCircle, PlusIcon,  } from "lucide-react"
+import {
+  ChevronDown,
+
+  MapPin,
+  Search,
+  Menu,
+  PlusIcon,
+  X
+} from "lucide-react"
 import Link from "next/link"
 
+
+
+import UserHeader from "./user-header/page"
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState("All Categories")
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
 
+  const [isuserLogin, setIsUserLogin] = useState(false)
+
+
   const categories = [
     "Cars",
-     "Property",
+    "Property",
   ]
 
   const mainCategories = [
     "Cars",
     "Property",
-    
+
   ]
 
   return (
@@ -36,17 +50,17 @@ export default function Header() {
                 <p className="text-xs text-gray-500 -mt-1">Buy & Sell Anything</p>
               </div>
             </div>
-            <button className="hidden lg:flex items-center text-gray-600 hover:text-gray-900">
-                <MapPin className="h-4 w-4 mr-1" />
-                Add Location
-              </button>
+            <button className="hidden lg:flex items-center text-gray-600 hover:text-gray-900 font-bold">
+              <MapPin className="h-4 w-4 mr-1" />
+              Add Location
+            </button>
 
 
             {/* Search Bar - Hidden on mobile */}
-            <div className="hidden md:flex flex-1 max-w-2xl mx-8 ">
+            <div className="hidden md:flex flex-1 w-xl justify-center mx-8 ">
               <div className="flex  w-full">
                 {/* Category Dropdown */}
-                <div className="relative">
+                {/* <div className="relative">
                   <button
                     onClick={() => setIsCategoryOpen(!isCategoryOpen)}
                     className="flex items-center px-4 py-2 bg-gray-100 border border-r-0 border-gray-300 rounded-l-md text-md text-gray-700 hover:bg-gray-200 whitespace-nowrap"
@@ -71,21 +85,21 @@ export default function Header() {
                       ))}
                     </div>
                   )}
-                </div>
+                </div> */}
 
                 {/* Search Input */}
                 <div className="flex-1 relative">
                   <input
                     type="text"
                     placeholder="Search any advertisement..."
-                    className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-2 border rounded-l-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </div>
 
                 {/* Search Button */}
                 <button className="px-6 py-2 bg-primary text-white rounded-r-md hover:bg-cyan-600 flex items-center">
                   <Search className="h-4 w-4 mr-2" />
-                  Search
+
                 </button>
               </div>
             </div>
@@ -93,19 +107,29 @@ export default function Header() {
             {/* Right Navigation */}
             <div className="flex items-center space-x-4">
               {/* Add Location - Hidden on mobile */}
-              
+
               {/* Auth Links - Hidden on mobile */}
-              <div className="hidden md:flex items-center space-x-4">
-                <button className="text-gray-600 hover:text-gray-900 font-bold">Login</button>
-             
+
+              <div className="hidden md:flex">
+                {isuserLogin ? (
+                  <Link href="/auth" className="hidden md:flex items-center space-x-4">
+                    <button className="text-gray-600 hover:text-gray-900 font-bold">Login</button>
+
+                  </Link>
+                ) :
+                  <UserHeader />
+                }
               </div>
+
+              {/* Right Side Navigation */}
+
 
               {/* Add Listing Button */}
               <Link href="/post">
-              <button className="hidden md:flex items-center bg-primary text-white px-4 py-2 rounded-md hover:bg-cyan-600 ">
-                <PlusIcon className="h-4 w-4 mr-2 font-bold" /> SELL
-              </button>
-                </Link>
+                <button className="flex text-white bg-gradient-to-r from-blue-500 via-primary to-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-md shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">
+                  <PlusIcon className="h-4 w-4 mr-2 font-extrabold" />SELL
+                </button>
+              </Link>
 
               {/* Language Selector - Hidden on mobile */}
               {/* <div className="hidden lg:flex items-center space-x-1">
@@ -129,7 +153,7 @@ export default function Header() {
       {/* Mobile Search Bar */}
       <div className="md:hidden border-b border-gray-200 p-4 ">
         <div className="flex ">
-          <div className="relative flex-1">
+          {/* <div className="relative flex-1">
             <button
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
               className="flex items-center px-3 py-2  bg-gray-100 border border-r-0 border-gray-300 rounded-l-md text-sm text-gray-700 hover:bg-gray-200"
@@ -154,12 +178,12 @@ export default function Header() {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
 
           <input
             type="text"
             placeholder="Search..."
-            className="flex-1 px-2 text-sm py-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="flex-1 px-2 text-sm py-1 border rounded-l-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
 
           <button className="px-2 py-2 bg-primary text-white rounded-r-md hover:bg-cyan-600">
@@ -176,7 +200,12 @@ export default function Header() {
               <MapPin className="h-4 w-4 mr-2" />
               Add Location
             </button>
-            <button className="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Login</button>
+
+            {isuserLogin ? (
+              <button className="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Login</button>
+            ) :
+              <UserHeader />
+            }
             {/* <button className="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Register</button> */}
             <button className="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-cyan-600 mt-2 flex items-center">
               <PlusIcon className="h-4 w-4 mr-2" /> SELL
@@ -207,7 +236,7 @@ export default function Header() {
       </div> */}
 
       {/* Mobile Category Navigation */}
-      <div className="lg:hidden border-b border-gray-200">
+      {/* <div className="lg:hidden border-b border-gray-200">
         <div className="px-4 py-2">
           <div className="flex overflow-x-auto space-x-4 scrollbar-hide">
             {mainCategories.map((category) => (
@@ -220,7 +249,7 @@ export default function Header() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </header>
   )
 }

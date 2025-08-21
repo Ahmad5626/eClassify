@@ -18,8 +18,8 @@ const stats = [
     color: "bg-green-500",
   },
   {
-    title: "Categories",
-    value: "156",
+    title: "Packages ",
+    value: "3",
     change: "+5.1%",
     changeType: "positive",
     icon: Award,
@@ -44,9 +44,9 @@ export default function DashboardStats() {
             <div>
               <p className="text-sm font-medium text-gray-600">{stat.title}</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">{stat.value}</p>
-              <p className={`text-sm mt-2 ${stat.changeType === "positive" ? "text-green-600" : "text-red-600"}`}>
+              {/* <p className={`text-sm mt-2 ${stat.changeType === "positive" ? "text-green-600" : "text-red-600"}`}>
                 {stat.change} from last month
-              </p>
+              </p> */}
             </div>
             <div className={`w-12 h-12 ${stat.color} rounded-lg flex items-center justify-center`}>
               <stat.icon className="w-6 h-6 text-white" />

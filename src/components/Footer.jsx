@@ -1,172 +1,245 @@
+"use client"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState } from "react"
+import {
+  Heart,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Send,
+  Star,
+  Users,
+  ShoppingBag,
+  Award,
+} from "lucide-react"
 
-export default function FooterSection() {
+export default function FooterBold() {
+  const [email, setEmail] = useState("")
+  const [hoveredSocial, setHoveredSocial] = useState(null)
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault()
+    console.log("Newsletter signup:", email)
+    setEmail("")
+  }
+
+  const socialLinks = [
+    { icon: Facebook, name: "Facebook", color: "bg-blue-600" },
+    { icon: Twitter, name: "Twitter", color: "bg-sky-500" },
+    { icon: Instagram, name: "Instagram", color: "bg-pink-500" },
+    { icon: Linkedin, name: "LinkedIn", color: "bg-blue-700" },
+    { icon: Youtube, name: "YouTube", color: "bg-red-600" },
+  ]
+
+  const quickLinks = ["About Us", "How It Works", "Safety Tips", "Pricing Plans", "Success Stories", "Help Center"]
+
+  const categories = ["Cars & Vehicles", "Electronics", "Real Estate", "Jobs", "Services", "Fashion"]
+
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-16">
-      {/* Newsletter/Offer Section */}
-      <div className="max-w-4xl mx-auto px-4 -mt-24 relative z-10">
-        <div className="bg-primary rounded-xl p-8 md:p-12 text-center shadow-2xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">UNLOCK 20% OFF YOUR FIRST ORDER</h2>
-          <p className="text-green-100 mb-8">Experience the Magic of the eClassify App</p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Email Address"
-              className="flex-1 bg-primary border-white text-white placeholder:text-white focus:border-green-500 focus:ring-green-500"
-            />
-            <Button className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md">
-             Send
-            </Button>
-          </div>
-        </div>
-      </div>
+    <footer className="relative overflow-hidden">
+      {/* Background with overlapping gradients */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent opacity-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 via-transparent to-primary/20"></div>
 
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Column 1: Logo and Description */}
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-               <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">eC</span>
+      {/* Decorative shapes */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-3xl -translate-x-32 -translate-y-32"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-accent/30 to-primary/30 rounded-full blur-3xl translate-x-48 translate-y-48"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 py-16">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
+          {/* Company Info Section */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300 animate-bounce-subtle">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                <ShoppingBag className="w-6 h-6 text-primary-foreground" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">eClassify</h1>
-                <p className="text-xs text-gray-500 -mt-1">Buy & Sell Anything</p>
+                <h3 className="text-2xl font-black text-card-foreground">eClassify</h3>
+                <p className="text-sm text-muted-foreground">Buy & Sell Anything</p>
               </div>
             </div>
-            
+
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Your trusted marketplace for buying and selling everything. Connect with millions of users worldwide and
+              discover amazing deals every day.
+            </p>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <MapPin className="w-5 h-5" />
+                <span>123 Market Street, Commerce City, CC 12345</span>
+              </div>
+              <div className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <Phone className="w-5 h-5" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <Mail className="w-5 h-5" />
+                <span>hello@eclassify.com</span>
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border/50">
+              <div className="text-center">
+                <div className="text-2xl font-black text-primary">2M+</div>
+                <div className="text-xs text-muted-foreground">Active Users</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-black text-secondary">500K+</div>
+                <div className="text-xs text-muted-foreground">Listings</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-black text-accent">99%</div>
+                <div className="text-xs text-muted-foreground">Satisfaction</div>
+              </div>
+            </div>
           </div>
-          <p className="text-sm leading-relaxed">
-            #1 Canadian top rated online dispensary that meets the consistent needs in every single medical marijuana
-            aspect. The team here at TopShelfBC is heavily involved in the Canadian cannabis industry for over 15 years.
-            We strive to provide the top quality products, service and care at the lowest prices you'll ever find.
-          </p>
+
+          {/* Quick Links & Categories */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-xl font-black text-card-foreground mb-6 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-accent" />
+                  Quick Links
+                </h4>
+                <ul className="space-y-3">
+                  {quickLinks.map((link, index) => (
+                    <li key={index}>
+                      <a
+                        href="#"
+                        className="text-muted-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
+                      >
+                        <div className="w-2 h-2 bg-secondary rounded-full group-hover:bg-primary transition-colors"></div>
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-black text-card-foreground mb-6 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-primary" />
+                  Categories
+                </h4>
+                <ul className="space-y-3">
+                  {categories.map((category, index) => (
+                    <li key={index}>
+                      <a
+                        href="#"
+                        className="text-muted-foreground hover:text-secondary hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
+                      >
+                        <div className="w-2 h-2 bg-accent rounded-full group-hover:bg-secondary transition-colors"></div>
+                        {category}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Newsletter & Social */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300 animate-pulse-glow">
+            <h4 className="text-xl font-black text-card-foreground mb-6 flex items-center gap-2">
+              <Users className="w-5 h-5 text-secondary" />
+              Stay Connected
+            </h4>
+
+            <p className="text-muted-foreground mb-6">
+              Join our community and get the latest updates, exclusive deals, and marketplace insights delivered to your
+              inbox.
+            </p>
+
+            {/* Newsletter Form */}
+            <form onSubmit={handleNewsletterSubmit} className="mb-8">
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="flex-1 px-2 text-sm md: text-md md:px-4 md:py-3 bg-input border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-2 text-sm md:text-md md:px-4 py-2 md:py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 font-semibold"
+                >
+                
+                  <Send className="w-4 h-4" />
+                  Subscribe
+                </button>
+              </div>
+            </form>
+
+            {/* Social Media Icons */}
+            <div>
+              <h5 className="text-lg font-bold text-card-foreground mb-4">Follow Us</h5>
+              <div className="flex gap-3">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon
+                  return (
+                    <button
+                      key={index}
+                      onMouseEnter={() => setHoveredSocial(index)}
+                      onMouseLeave={() => setHoveredSocial(null)}
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-12 ${
+                        hoveredSocial === index ? `${social.color} shadow-lg` : "bg-muted hover:bg-primary"
+                      }`}
+                    >
+                      <Icon
+                        className={`w-5 h-5 ${
+                          hoveredSocial === index ? "text-white" : "text-muted-foreground hover:text-primary-foreground"
+                        }`}
+                      />
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="mt-8 pt-6 border-t border-border/50">
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>Secure Platform</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Heart className="w-4 h-4 text-red-500" />
+                  <span>Trusted by Millions</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Column 2 & 3: Quick Links */}
-        <div className="grid grid-cols-2 gap-4 md:col-span-2">
-          <div>
-            <h3 className="text-white font-semibold mb-4">QUICK LINK</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Track Your Order
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Shop All
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Flower
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Edibles
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Concentrates
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Refunds
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-white font-semibold mb-4 invisible md:visible">MORE</h3> {/* Placeholder for alignment */}
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Mushrooms
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Promotions / Bundles
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Support
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Reward
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Shipping Faq
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Column 4: Contact Us & More */}
-        <div className="space-y-8">
-          <div>
-            <h3 className="text-white font-semibold mb-4">CONTACT US</h3>
-            <p className="text-sm py-4">
-              <a href="mailto:info@topshelfbc.cc" className="hover:text-white transition-colors">
-                info@topshelfbc.cc
+        {/* Bottom Bar */}
+        <div className="border-t border-border/50 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-muted-foreground text-sm">
+              © 2024 eClassify. All rights reserved. Made with ❤️ for the community.
+            </div>
+            <div className="flex gap-6 text-sm">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                Privacy Policy
               </a>
-            </p>
-            
-             <p className="text-sm py-4">
-              <a href="mailto:info@topshelfbc.cc" className="hover:text-white transition-colors">
-                19279348162498
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                Terms of Service
               </a>
-            </p>
-             <p className="text-sm py-4">
-              <a href="mailto:info@topshelfbc.cc" className="hover:text-white transition-colors">
-                info@topshelfbc.cc
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                Cookie Policy
               </a>
-            </p>
-          </div>
-          
-        </div>
-      </div>
-
-      {/* Payment Icons */}
-      <div className="max-w-7xl mx-auto px-4 py-8 border-t border-gray-700 flex justify-center md:justify-start gap-4">
-        <img src="/assets/img/visa.png" alt="Visa" className="h-6" />
-        <img src="/assets/img/mastercard.png" alt="Mastercard" className="h-6" />
-        <img src="/assets/img/interac.png" alt="Interac" className="h-6" />
-        <img src="/assets/img/bitcoin.png" alt="Bitcoin" className="h-6" />
-      </div>
-
-      {/* Copyright and Legal Links */}
-      <div className="bg-gray-950 py-4">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-          <p className="mb-2 md:mb-0">© 2022 Top Shelf BC. All Rights Reserved.</p>
-          <div className="flex space-x-4">
-            <a href="#" className="hover:text-white transition-colors">
-              Out Of Stock
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Terms & Conditions
-            </a>
+            </div>
           </div>
         </div>
       </div>

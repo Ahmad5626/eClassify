@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Search, MapPin, Menu, X, ChevronDown, Globe } from "lucide-react"
+import { Search, MapPin, Menu, X, ChevronDown, Globe, Plus, PlusCircle, PlusIcon } from "lucide-react"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -35,6 +35,11 @@ export default function Header() {
                 <p className="text-xs text-gray-500 -mt-1">Buy & Sell Anything</p>
               </div>
             </div>
+            <button className="hidden lg:flex items-center text-gray-600 hover:text-gray-900">
+                <MapPin className="h-4 w-4 mr-1" />
+                Add Location
+              </button>
+
 
             {/* Search Bar - Hidden on mobile */}
             <div className="hidden md:flex flex-1 max-w-2xl mx-8 ">
@@ -87,28 +92,24 @@ export default function Header() {
             {/* Right Navigation */}
             <div className="flex items-center space-x-4">
               {/* Add Location - Hidden on mobile */}
-              <button className="hidden lg:flex items-center text-gray-600 hover:text-gray-900">
-                <MapPin className="h-4 w-4 mr-1" />
-                Add Location
-              </button>
-
+              
               {/* Auth Links - Hidden on mobile */}
               <div className="hidden md:flex items-center space-x-4">
-                <button className="text-gray-600 hover:text-gray-900">Login</button>
-                <button className="text-gray-600 hover:text-gray-900">Register</button>
+                <button className="text-gray-600 hover:text-gray-900 font-bold">Login</button>
+             
               </div>
 
               {/* Add Listing Button */}
-              <button className="hidden md:block bg-primary text-white px-4 py-2 rounded-md hover:bg-cyan-600">
-                Add Listing
+              <button className="hidden md:flex items-center bg-primary text-white px-4 py-2 rounded-md hover:bg-cyan-600 ">
+                <PlusIcon className="h-4 w-4 mr-2 font-bold" /> SELL
               </button>
 
               {/* Language Selector - Hidden on mobile */}
-              <div className="hidden lg:flex items-center space-x-1">
+              {/* <div className="hidden lg:flex items-center space-x-1">
                 <Globe className="h-4 w-4 text-gray-600" />
                 <span className="text-sm text-gray-600">en</span>
                 <ChevronDown className="h-3 w-3 text-gray-600" />
-              </div>
+              </div> */}
 
               {/* Mobile Menu Button */}
               <button

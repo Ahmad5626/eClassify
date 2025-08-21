@@ -123,9 +123,9 @@ export default function AdsManagement() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
-                      <button className="text-blue-600 hover:text-blue-900">
+                      {/* <button className="text-blue-600 hover:text-blue-900">
                         <Eye className="w-4 h-4" />
-                      </button>
+                      </button> */}
                       <button className="text-green-600 hover:text-green-900">
                         <Edit className="w-4 h-4" />
                       </button>
@@ -141,5 +141,6 @@ export default function AdsManagement() {
         </div>
       </div>
     </div>
+    
   )
 }

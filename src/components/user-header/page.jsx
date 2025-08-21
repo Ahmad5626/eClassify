@@ -72,7 +72,7 @@ const UserHeader = () => {
               <DropdownMenuTrigger asChild>
                 <div variant="ghost" className="flex items-center gap-2 p-2 bg-white">
                   <div className="w-8 h-8 rounded-full  flex items-center justify-center overflow-hidden">
-                    <img src="./assets/img/testimonials1.png" alt="Ahmad Raza" className="w-full h-full object-cover" />
+                    <img src="https://i.pravatar.cc/300" alt="Ahmad Raza" className="w-full h-full object-cover" />
                   </div>
                   <ChevronDown className="h-4 w-4" />
                 </div>
@@ -82,14 +82,17 @@ const UserHeader = () => {
                 <div className="p-4 border-b">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                      <img src="./assets/img/testimonials1.png" alt="Ahmad Raza" className="w-full h-full object-cover" />
+                      <img src="https://i.pravatar.cc/300" alt="Ahmad Raza" className="w-full h-full object-cover" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Ahmad Raza</h3>
                     </div>
                   </div>
+                  <Link href="profile">
 
                   <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">View and edit profile</Button>
+                  </Link>
+
 
                   {/* <div className="mt-4">
                     <div className="flex items-center justify-between mb-2">

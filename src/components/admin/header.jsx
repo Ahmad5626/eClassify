@@ -27,7 +27,7 @@ export default function AdminHeader({ activeTab, setSidebarOpen }) {
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button> */}
           <div className="flex items-center space-x-3">
-            <img src="./assets/img/user.png" alt="Admin" className="w-8 h-8 rounded-full" />
+            <img src="https://i.pravatar.cc/300" alt="Admin" className="w-8 h-8 rounded-full" />
             <div className="hidden md:block">
               <p className="text-sm font-medium text-gray-900">Admin User</p>
               <p className="text-xs text-gray-500">admin@olx.com</p>

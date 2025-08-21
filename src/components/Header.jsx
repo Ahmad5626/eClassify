@@ -159,10 +159,10 @@ export default function Header() {
           <input
             type="text"
             placeholder="Search..."
-            className="flex-1 px-3 text-sm py-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="flex-1 px-2 text-sm py-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
 
-          <button className="px-4 py-2 bg-primary text-white rounded-r-md hover:bg-cyan-600">
+          <button className="px-2 py-2 bg-primary text-white rounded-r-md hover:bg-cyan-600">
             <Search className="h-4 w-4" />
           </button>
         </div>

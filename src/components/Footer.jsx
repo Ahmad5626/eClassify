@@ -17,6 +17,7 @@ import {
   ShoppingBag,
   Award,
 } from "lucide-react"
+import Link from "next/link"
 
 export default function FooterBold() {
   const [email, setEmail] = useState("")
@@ -36,9 +37,26 @@ export default function FooterBold() {
     { icon: Youtube, name: "YouTube", color: "bg-red-600" },
   ]
 
-  const quickLinks = ["About Us", "How It Works", "Safety Tips", "Pricing Plans", "Success Stories", "Help Center"]
+  const quickLinks = [
+    { title: "About Us", url: "about" },
+    { title: "Pricing Plans", url: "pricing" },
+  { title: "Contact Us", url: "contact" },
+  // { title: "Safety Tips", url: "safety-tips" },
+  // { title: "Success Stories", url: "success-stories" },
+  // { title: "Help Center", url: "help-center" },
+];
 
-  const categories = ["Cars & Vehicles", "Electronics", "Real Estate", "Jobs", "Services", "Fashion"]
+  const categories = [{
+    title: "Cars",
+    url: "cars",
+  },
+  {
+    title: "Property",
+    url: "property",
+  },
+ 
+
+]
 
   return (
     <footer className="relative overflow-hidden">
@@ -85,7 +103,53 @@ export default function FooterBold() {
               </div>
             </div>
 
-            {/* Stats */}
+           
+          </div>
+
+          {/* Quick Links & Categories */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-xl font-black text-card-foreground mb-6 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-accent" />
+                  Quick Links
+                </h4>
+                <ul className="space-y-3">
+                  {quickLinks.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={link.url}
+                        className="text-muted-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
+                      >
+                        <div className="w-2 h-2 bg-secondary rounded-full group-hover:bg-primary transition-colors "></div>
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-black text-card-foreground mb-6 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-primary" />
+                  Categories
+                </h4>
+                <ul className="space-y-3">
+                  {categories.map((category, index) => (
+                    <li key={index}>
+                      <Link
+                        href={category.url}
+                        className="text-muted-foreground hover:text-secondary hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
+                      >
+                        <div className="w-2 h-2 bg-accent rounded-full group-hover:bg-secondary transition-colors"></div>
+                        {category.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border/50">
               <div className="text-center">
                 <div className="text-2xl font-black text-primary">2M+</div>
@@ -100,51 +164,20 @@ export default function FooterBold() {
                 <div className="text-xs text-muted-foreground">Satisfaction</div>
               </div>
             </div>
-          </div>
-
-          {/* Quick Links & Categories */}
-          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <div>
-                <h4 className="text-xl font-black text-card-foreground mb-6 flex items-center gap-2">
-                  <Star className="w-5 h-5 text-accent" />
-                  Quick Links
-                </h4>
-                <ul className="space-y-3">
-                  {quickLinks.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href="#"
-                        className="text-muted-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
-                      >
-                        <div className="w-2 h-2 bg-secondary rounded-full group-hover:bg-primary transition-colors"></div>
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-xl font-black text-card-foreground mb-6 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-primary" />
-                  Categories
-                </h4>
-                <ul className="space-y-3">
-                  {categories.map((category, index) => (
-                    <li key={index}>
-                      <a
-                        href="#"
-                        className="text-muted-foreground hover:text-secondary hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
-                      >
-                        <div className="w-2 h-2 bg-accent rounded-full group-hover:bg-secondary transition-colors"></div>
-                        {category}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+{/* Trust Badges */}
+            <div className="mt-8 pt-6 border-t border-border/50">
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>Secure Platform</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Heart className="w-4 h-4 text-red-500" />
+                  <span>Trusted by Millions</span>
+                </div>
               </div>
             </div>
+
           </div>
 
           {/* Newsletter & Social */}
@@ -207,19 +240,7 @@ export default function FooterBold() {
               </div>
             </div>
 
-            {/* Trust Badges */}
-            <div className="mt-8 pt-6 border-t border-border/50">
-              <div className="flex items-center justify-between text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span>Secure Platform</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Heart className="w-4 h-4 text-red-500" />
-                  <span>Trusted by Millions</span>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
 

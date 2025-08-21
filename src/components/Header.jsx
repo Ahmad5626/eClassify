@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Search, MapPin, Menu, X, ChevronDown, Globe, Plus, PlusCircle, PlusIcon } from "lucide-react"
+import { Search, MapPin, Menu, X, ChevronDown, Globe, Plus, PlusCircle, PlusIcon,  } from "lucide-react"
+import Link from "next/link"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -100,9 +101,11 @@ export default function Header() {
               </div>
 
               {/* Add Listing Button */}
+              <Link href="/post">
               <button className="hidden md:flex items-center bg-primary text-white px-4 py-2 rounded-md hover:bg-cyan-600 ">
                 <PlusIcon className="h-4 w-4 mr-2 font-bold" /> SELL
               </button>
+                </Link>
 
               {/* Language Selector - Hidden on mobile */}
               {/* <div className="hidden lg:flex items-center space-x-1">
@@ -174,14 +177,14 @@ export default function Header() {
               Add Location
             </button>
             <button className="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Login</button>
-            <button className="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Register</button>
-            <button className="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-cyan-600 mt-2">
-              Add Listing
+            {/* <button className="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Register</button> */}
+            <button className="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-cyan-600 mt-2 flex items-center">
+              <PlusIcon className="h-4 w-4 mr-2" /> SELL
             </button>
-            <div className="flex items-center py-2 text-gray-600">
+            {/* <div className="flex items-center py-2 text-gray-600">
               <Globe className="h-4 w-4 mr-2" />
               <span className="text-sm">English</span>
-            </div>
+            </div> */}
           </div>
         </div>
       )}

@@ -1,204 +1,309 @@
 "use client"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import React, { useContext, useEffect, useState } from "react";
 
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Phone, Mail } from "lucide-react"
+import Link from "next/link"
+import Header from "@/components/Header"
+import FooterBold from "@/components/Footer"
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Context } from "@/app/context";
-import Header from "@/components/Header";
-import FooterSection from "@/components/Footer";
-// import GoogleLoginButton from "@/components/googlelogin/GoogleLoginButton";
-// import FacebookLoginBtn from "@/components/facebookLoginBtn/FacebookLoginBtn";
+export default function LoginPage() {
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [otp, setOtp] = useState("")
+  const [showOtp, setShowOtp] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
 
-
-const Authpage = () => {
-
-
-  const {
-    signInFormdata,
-    setSignInFormdata,
-    signUpFormdata,
-    setSignUpFormdata,
-    handleChangeSignUpFormdata,
-    handleChangeSignInFormdata,
-    checkIfSignInFormIsValid,
-    checkIfSignUpFormIsValid,
-    registerHandleSubmit,
-    loginHandleSubmit,
-    Toaster,
-    activeTab,
-    setActiveTab
-
-  } = useContext(Context);
-
-  function handleTabChange(value) {
-    setActiveTab(value);
+  const handleSendOtp = () => {
+    if (phoneNumber.length >= 10) {
+      setShowOtp(true)
+      // Here you would integrate with your OTP service
+      console.log("[v0] Sending OTP to:", phoneNumber)
+    }
   }
 
+  const handleVerifyOtp = () => {
+    if (otp.length === 6) {
+      // Here you would verify the OTP
+      console.log("[v0] Verifying OTP:", otp)
+    }
+  }
 
+  const handleGoogleAuth = () => {
+    // Here you would integrate with Google OAuth
+    console.log("[v0] Google authentication initiated")
+  }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
     <Header/>
-      <Toaster position="top-center" />
-      
-      <div className="flex items-center justify-center min-h-screen bg-[#f5f5f5] px-4">
-        <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <Link href="/" className="text-2xl font-bold text-primary">
+            eClassify
+          </Link>
+          <p className="text-gray-600 mt-2">Welcome back! Please sign in to your account</p>
+        </div>
 
+        <Card className="shadow-lg">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl text-primary">Welcome</CardTitle>
+            <CardDescription>Sign in or create your account</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue="signin" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 my-4">
+                <TabsTrigger value="signin">Sign In</TabsTrigger>
+                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              </TabsList>
 
-          {/* Social buttons */}
-          <div className="flex justify-between gap-4 mb-4">
+              {/* Sign In Tab */}
+              <TabsContent value="signin" className="space-y-4">
+                <Tabs defaultValue="phone" className="w-full">
+                  {/* <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="phone" className="flex items-center gap-2">
+                      <Phone className="h-4 w-4" />
+                      Phone
+                    </TabsTrigger>
+                    <TabsTrigger value="email" className="flex items-center gap-2">
+                      <Mail className="h-4 w-4" />
+                      Email
+                    </TabsTrigger>
+                  </TabsList> */}
 
- <button className="flex-1 flex items-center justify-center border border-gray-300 rounded-full py-2">
-              <img src="./assets/img/google.png" alt="Facebook" className="w-5 h-5 mr-2" />
-              {/* <span className="text-sm"><FacebookLoginBtn /></span> */}
-            </button>
-            {/* <span className="text-sm"><GoogleLoginButton /></span> */}
+                  {/* Phone Sign In */}
+                  <TabsContent value="phone" className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="signin-phone">Phone Number</Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="signin-phone"
+                          type="tel"
+                          placeholder="+91 (555) 000-0000"
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                          disabled={showOtp}
+                        />
+                        {!showOtp && (
+                          <Button onClick={handleSendOtp} variant="outline" className="text-primary">
+                            Send OTP
+                          </Button>
+                        )}
+                      </div>
+                    </div>
 
-            <button className="flex-1 flex items-center justify-center border border-gray-300 rounded-full py-2">
-              <img src="https://www.svgrepo.com/show/452196/facebook-1.svg" alt="Facebook" className="w-5 h-5 mr-2" />
-              {/* <span className="text-sm"><FacebookLoginBtn /></span> */}
-            </button>
-          </div>
+                    {showOtp && (
+                      <div className="space-y-2">
+                        <Label htmlFor="signin-otp">Enter OTP</Label>
+                        <div className="flex gap-2">
+                          <Input
+                            id="signin-otp"
+                            type="text"
+                            placeholder="000000"
+                            maxLength={6}
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                          />
+                          <Button onClick={handleVerifyOtp}>Verify</Button>
+                        </div>
+                        <Button variant="link" className="text-sm" onClick={() => setShowOtp(false)}>
+                          Change number
+                        </Button>
+                      </div>
+                    )}
+                  </TabsContent>
 
-          <div className="flex items-center my-4">
-            <hr className="flex-grow border-t" />
-            <span className="mx-2 text-gray-500 text-sm">or {activeTab} in with</span>
-            <hr className="flex-grow border-t" />
-          </div>
+                  {/* Email Sign In */}
+                  {/* <TabsContent value="email" className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="signin-email">Email</Label>
+                      <Input
+                        id="signin-email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="signin-password">Password</Label>
+                      <Input
+                        id="signin-password"
+                        type="password"
+                        placeholder="••••••••"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                    <Button className="w-full">Sign In</Button>
+                  </TabsContent> */}
+                </Tabs>
 
-          <Tabs value={activeTab} defaultValue="signin" onValueChange={handleTabChange}>
-            <TabsList className="grid w-full grid-cols-2 bg-[#f3f3f3] mb-4">
-              <TabsTrigger value="signin">Sign In</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
-            </TabsList>
-
-            {/* Sign In Tab */}
-            <TabsContent value="signin">
-              <form onSubmit={loginHandleSubmit} className="space-y-4">
-                <div>
-                  <Label>Email</Label>
-                  <Input
-                    type="text"
-                    name="userEmail"
-                    placeholder="Enter your email"
-                    value={signInFormdata.userEmail}
-                    onChange={handleChangeSignInFormdata}
-                  />
-                </div>
-
-                <div>
-                  <Label>Password</Label>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Enter your password"
-                    value={signInFormdata.password}
-                    onChange={handleChangeSignInFormdata}
-                  />
-                </div>
-
-                {/* <div className="text-right">
-                <Link to="/forgot-password" className="text-sm text-gray-500 hover:underline">
-                  Forgot your password?
-                </Link>
-              </div> */}
-
-                <Button
-                  type="submit"
-                  className="w-full bg-black text-white rounded-full"
-                  disabled={!checkIfSignInFormIsValid()}
-                >
-                  Log in
-                </Button>
-              </form>
-            </TabsContent>
-
-            {/* Sign Up Tab */}
-            <TabsContent value="signup">
-              <form onSubmit={registerHandleSubmit} className="space-y-4">
-                <div>
-                  <Label>Full Name</Label>
-                  <Input
-                    type="text"
-                    name="fullName"
-                    placeholder="Enter your name"
-                    value={signUpFormdata.fullName}
-                    onChange={handleChangeSignUpFormdata}
-                  />
-                </div>
-
-                <div>
-                  <Label>Email</Label>
-                  <Input
-                    type="text"
-                    name="userEmail"
-                    placeholder="Enter your email"
-                    value={signUpFormdata.userEmail}
-                    onChange={handleChangeSignUpFormdata}
-                  />
-                </div>
-
-                <div>
-                  <Label>Password</Label>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Create a password"
-                    value={signUpFormdata.password}
-                    onChange={handleChangeSignUpFormdata}
-                  />
-                </div>
-                <p className="text-[11px] text-gray-500">Password must be 8+ characters, include uppercase, number, and special character.</p>
-
-                <div className="space-y-2">
-                  <Label htmlFor="maritalStatus">Registered Type </Label>
-                  <Select defaultValue=""
-                    name="RegisteredType"
-                    value={signUpFormdata.RegisteredType}
-                    onValueChange={(value) =>
-                      setSignUpFormdata({ ...signUpFormdata, RegisteredType: value })
-                    }
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="- Select -" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      <SelectItem value="Individual" className={"bg-white hover:bg-gray-200"}>Individual</SelectItem>
-                      <SelectItem value="Institute" className={"bg-white hover:bg-gray-200"}> Institute</SelectItem>
-
-                    </SelectContent>
-                  </Select>
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">Or</span>
+                  </div>
                 </div>
 
                 <Button
-                  type="submit"
-                  className="w-full bg-black text-white rounded-full"
-                  disabled={!checkIfSignUpFormIsValid()}
+                  variant="outline"
+                  className="w-full flex items-center gap-2 bg-transparent "
+                  onClick={handleGoogleAuth}
                 >
-                  Sign Up
+                  <img src="./assets/img/google.png" alt="Google Logo" className="w-6 h-6" />
+                  <span className="text-primary">Continue with Google</span>
                 </Button>
-              </form>
-            </TabsContent>
-          </Tabs>
+              </TabsContent>
 
-          <p className="text-center mt-6 text-sm">
-            Don’t have an account?{" "}
-            <span
-              onClick={() => setActiveTab("signup")}
-              className="text-blue-600 cursor-pointer hover:underline"
-            >
-              Sign up here
-            </span>
+              {/* Sign Up Tab */}
+              <TabsContent value="signup" className="space-y-4">
+                <Tabs defaultValue="phone" className="w-full">
+                  {/* <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="phone" className="flex items-center gap-2">
+                      <Phone className="h-4 w-4" />
+                      Phone
+                    </TabsTrigger>
+                    <TabsTrigger value="email" className="flex items-center gap-2">
+                      <Mail className="h-4 w-4" />
+                      Email
+                    </TabsTrigger>
+                  </TabsList> */}
+
+                  {/* Phone Sign Up */}
+                  <TabsContent value="phone" className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-name">Full Name</Label>
+                      <Input
+                        id="signup-name"
+                        type="text"
+                        placeholder="John Doe"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-phone">Phone Number</Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="signup-phone"
+                          type="tel"
+                          placeholder="+1 (555) 000-0000"
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                          disabled={showOtp}
+                        />
+                        {!showOtp && (
+                          <Button onClick={handleSendOtp} variant="outline">
+                            Send OTP
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+
+                    {showOtp && (
+                      <div className="space-y-2">
+                        <Label htmlFor="signup-otp">Enter OTP</Label>
+                        <div className="flex gap-2">
+                          <Input
+                            id="signup-otp"
+                            type="text"
+                            placeholder="000000"
+                            maxLength={6}
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                          />
+                          <Button onClick={handleVerifyOtp}>Verify</Button>
+                        </div>
+                        <Button variant="link" className="text-sm" onClick={() => setShowOtp(false)}>
+                          Change number
+                        </Button>
+                      </div>
+                    )}
+                  </TabsContent>
+
+                  {/* Email Sign Up */}
+                  {/* <TabsContent value="email" className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-name-email">Full Name</Label>
+                      <Input
+                        id="signup-name-email"
+                        type="text"
+                        placeholder="John Doe"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-email">Email</Label>
+                      <Input
+                        id="signup-email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-password">Password</Label>
+                      <Input
+                        id="signup-password"
+                        type="password"
+                        placeholder="••••••••"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                    <Button className="w-full">Create Account</Button>
+                  </TabsContent> */}
+                </Tabs>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">Or</span>
+                  </div>
+                </div>
+
+                <Button
+                  variant="outline"
+                  className="w-full flex items-center gap-2 bg-transparent"
+                  onClick={handleGoogleAuth}
+                >
+                <img src="./assets/img/google.png" alt="Google Logo" className="w-6 h-6" />
+                  <span className="text-primary">Continue with Google</span>
+                </Button>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+
+        <div className="text-center mt-6">
+          <p className="text-sm text-gray-600">
+            By continuing, you agree to our{" "}
+            <Link href="/terms" className="text-primary hover:underline">
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link href="/privacy" className="text-primary hover:underline">
+              Privacy Policy
+            </Link>
           </p>
         </div>
       </div>
-      <FooterSection/>
     </div>
-  );
-};
-
-export default Authpage;
+    <FooterBold/>
+    </>
+  )
+}

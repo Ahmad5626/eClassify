@@ -104,7 +104,7 @@ export default function PricingPlans() {
                 <div className="space-y-4 mb-8">
                   {plan.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <div className="w-5 h-5 bg-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path
                             fillRule="evenodd"
@@ -119,7 +119,7 @@ export default function PricingPlans() {
                 </div>
 
                 {/* Choose Plan Button */}
-                <button className="w-full py-3 px-6 border-2 border-cyan-500 text-cyan-500 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-colors duration-300 flex items-center justify-center gap-2">
+                <button className="w-full py-3 px-6 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors duration-300 flex items-center justify-center gap-2">
                   Choose Plan
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -133,7 +133,7 @@ export default function PricingPlans() {
 
       <style jsx global>{`
         .pricing-slider .splide__arrow {
-          background: #06b6d4;
+          background: #2d48c3;
           border: none;
           width: 3rem;
           height: 3rem;
